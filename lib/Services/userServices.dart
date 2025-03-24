@@ -6,7 +6,7 @@ class UserServices {
   ///Create User
   Future createUser(UserModel model) async {
     return await FirebaseFirestore.instance
-        .collection('user1Collection')
+        .collection('userCollection')
         .doc(model.docId)
         .set(model.toJson());
   }
@@ -25,7 +25,7 @@ class UserServices {
   ///Update User Profile
   Future updateTask(UserModel model) async {
     return await FirebaseFirestore.instance
-        .collection('user1Collection')
+        .collection('userCollection')
         .doc(model.docId)
         .update({
       "name": model.name,
