@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_backend_functionalities/Services/authorization.dart';
-import 'package:news_app_backend_functionalities/Views/forgetPassword_screen.dart';
-import 'package:news_app_backend_functionalities/Views/signUp_screen.dart';
+import 'package:news_app_backend_functionalities/Views/login_screen.dart';
 
-class login_screen extends StatefulWidget {
-  const login_screen({super.key});
+import '../Services/authorization.dart';
+
+class forgetPassword_screen extends StatefulWidget {
+  const forgetPassword_screen({super.key});
 
   @override
-  State<login_screen> createState() => _login_screenState();
+  State<forgetPassword_screen> createState() => _forgetPassword_screenState();
 }
 
-class _login_screenState extends State<login_screen> {
+class _forgetPassword_screenState extends State<forgetPassword_screen> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
 
   @override
@@ -57,23 +56,6 @@ class _login_screenState extends State<login_screen> {
               cursorColor: Colors.red,
             ),
             SizedBox(height: 10),
-            TextField(
-              controller: passwordController,
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.blue, // Text color
-                fontWeight: FontWeight.bold,
-              ),
-              cursorColor: Colors.red,
-            ),
-
-            SizedBox(height: 20),
-
             isLoading
                 ? Center(child: CircularProgressIndicator())
                 : ElevatedButton(
@@ -84,59 +66,26 @@ class _login_screenState extends State<login_screen> {
                       );
                       return;
                     }
-                    if (passwordController.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Password can not be Empty")),
-                      );
-                      return;
-                    }
 
                     try {
                       isLoading = true;
                       setState(() {});
                       await authorizationServices()
-                          .loginUser(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          )
+                          .resetPassword(emailController.text)
                           .then((val) {
                             isLoading = false;
                             setState(() {});
-                            if (true) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text("Message"),
-                                    content: Text("Logged In"),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder:
-                                                  (context) => signUp_screen(),
-                                            ),
-                                          );
-                                        },
-                                        child: Text("Go to Home"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            } else {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text("Message"),
-                                    content: Text("Please verify your email"),
-                                  );
-                                },
-                              );
-                            }
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Message"),
+                                  content: Text(
+                                    "An email with password reset link has been sent to your mail box",
+                                  ),
+                                );
+                              },
+                            );
                           });
                     } catch (e) {
                       isLoading = false;
@@ -144,7 +93,6 @@ class _login_screenState extends State<login_screen> {
                       ScaffoldMessenger.of(
                         context,
                       ).showSnackBar(SnackBar(content: Text(e.toString())));
-                      return;
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -157,7 +105,7 @@ class _login_screenState extends State<login_screen> {
                     shadowColor: Colors.blue,
                   ),
                   child: Text(
-                    "Login",
+                    "Reset Password",
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
@@ -166,12 +114,7 @@ class _login_screenState extends State<login_screen> {
 
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => forgetPassword_screen(),
-                  ),
-                );
+                Navigator.push(context, MaterialPageRoute(builder: (context) => login_screen()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
@@ -183,7 +126,7 @@ class _login_screenState extends State<login_screen> {
                 shadowColor: Colors.blue,
               ),
               child: Text(
-                "Reset Password",
+                "Log In",
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
