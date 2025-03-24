@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Views/login_screen.dart';
-import 'package:news_app_backend_functionalities/Views/signUp_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
