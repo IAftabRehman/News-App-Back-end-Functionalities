@@ -174,9 +174,7 @@ class _signUp_screenState extends State<signUp_screen> {
                                         email: emailController.text,
                                         phoneNumber: phoneNumberController.text,
                                         address: addressController.text,
-                                        createdAt:
-                                            DateTime.now()
-                                                .millisecondsSinceEpoch,
+                                        createdAt: DateTime.now().millisecondsSinceEpoch,
                                         docId: val!.uid.toString(),
                                       ),
                                     )
