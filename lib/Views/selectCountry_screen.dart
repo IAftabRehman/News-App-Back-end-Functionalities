@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Models/countryModel.dart';
 import 'package:news_app_backend_functionalities/Views/login_screen.dart';
+import 'package:news_app_backend_functionalities/Views/selectCity_screen.dart';
 
 import '../Services/countryServices.dart';
 
@@ -151,19 +153,23 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                         );
                         return;
                       }
-
+                      String? userId = FirebaseAuth.instance.currentUser?.uid;
+                      if (userId == null) {
+                        print("User is not logged in.");
+                        return;
+                      }
                       try {
                         isLoading = true;
                         setState(() {});
                         await CountryServices().createCountry(CountryModel(
-                          docId: FirebaseFirestore.instance.collection('countryCollection').doc().id,
+                          docId: userId.toString(),
                           countryName: countryName,
                           countryCode: countryCode,
                           createdAt: DateTime.now().millisecondsSinceEpoch,
                         )).then((val){
                           isLoading = false;
                           setState(() {});
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => login_screen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => selectCity_screen()));
                         });
                       } catch (e) {
                         isLoading = false;
