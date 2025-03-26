@@ -5,10 +5,12 @@ import '../Models/userModel.dart';
 class UserServices {
   ///Create User
   Future createUser(UserModel model) async {
+    DocumentReference documentReference =
+    FirebaseFirestore.instance.collection('userCollection').doc();
     return await FirebaseFirestore.instance
         .collection('userCollection')
-        .doc(model.docId)
-        .set(model.toJson());
+        .doc(documentReference.id)
+        .set(model.toJson(documentReference.id));
   }
 
   ///Get User by ID

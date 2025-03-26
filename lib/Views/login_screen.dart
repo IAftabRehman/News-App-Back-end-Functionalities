@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Services/authorization.dart';
 import 'package:news_app_backend_functionalities/Views/forgetPassword_screen.dart';
+import 'package:news_app_backend_functionalities/Views/selectCountry_screen.dart';
 import 'package:news_app_backend_functionalities/Views/signUp_screen.dart';
 
 class login_screen extends StatefulWidget {
@@ -74,77 +75,102 @@ class _login_screenState extends State<login_screen> {
 
             SizedBox(height: 20),
 
-            isLoading
-                ? Center(child: CircularProgressIndicator())
-                : ElevatedButton(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : ElevatedButton(
+                      onPressed: () async {
+                        if (emailController.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Email can not be Empty")),
+                          );
+                          return;
+                        }
+                        if (passwordController.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Password can not be Empty"),
+                            ),
+                          );
+                          return;
+                        }
+
+                        try {
+                          isLoading = true;
+                          setState(() {});
+                          await authorizationServices()
+                              .loginUser(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              )
+                              .then((val) {
+                                isLoading = false;
+                                setState(() {});
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => selectCountry_screen()));
+                              });
+                        } catch (e) {
+                          isLoading = false;
+                          setState(() {});
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text(e.toString())));
+                          return;
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 15,
+                        shadowColor: Colors.blue,
+                      ),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+
+                ElevatedButton(
                   onPressed: () async {
                     if (emailController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Email can not be Empty")),
+                        SnackBar(
+                          content: Text(
+                            "For reset password Email must be required",
+                          ),
+                        ),
                       );
                       return;
                     }
-                    if (passwordController.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Password can not be Empty")),
-                      );
-                      return;
-                    }
-
                     try {
-                      isLoading = true;
-                      setState(() {});
                       await authorizationServices()
-                          .loginUser(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          )
+                          .resetPassword(emailController.text)
                           .then((val) {
                             isLoading = false;
                             setState(() {});
-                            if (true) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text("Message"),
-                                    content: Text("Logged In"),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder:
-                                                  (context) => signUp_screen(),
-                                            ),
-                                          );
-                                        },
-                                        child: Text("Go to Home"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            } else {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text("Message"),
-                                    content: Text("Please verify your email"),
-                                  );
-                                },
-                              );
-                            }
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Message"),
+                                  content: Text(
+                                    "An email with password reset link has been sent to your mail box",
+                                  ),
+                                );
+                              },
+                            );
                           });
                     } catch (e) {
-                      isLoading = false;
-                      setState(() {});
                       ScaffoldMessenger.of(
                         context,
                       ).showSnackBar(SnackBar(content: Text(e.toString())));
-                      return;
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -157,33 +183,39 @@ class _login_screenState extends State<login_screen> {
                     shadowColor: Colors.blue,
                   ),
                   child: Text(
-                    "Login",
+                    "Forget",
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
+              ],
+            ),
 
+            SizedBox(height: 30),
+            Text(
+              "adklsjflasd",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             SizedBox(height: 20),
 
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => forgetPassword_screen(),
-                  ),
-                );
-              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10)
                 ),
-                elevation: 15,
-                shadowColor: Colors.blue,
+                elevation: 10,
+                shadowColor: Colors.blue
               ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => signUp_screen()));
+              },
               child: Text(
-                "Reset Password",
+                "Sign Up",
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),

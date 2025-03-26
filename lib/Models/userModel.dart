@@ -2,7 +2,7 @@ import 'dart:convert';
 
 UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
-String userModelToJson(UserModel data) => json.encode(data.toJson());
+// String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
   final String? name;
@@ -33,7 +33,7 @@ class UserModel {
     docId: json["docID"],
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson(String docID) => {
     "name": name,
     "email": email,
     "createdAt": createdAt,

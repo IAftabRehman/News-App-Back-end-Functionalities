@@ -153,16 +153,18 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                         );
                         return;
                       }
-                      String? userId = FirebaseAuth.instance.currentUser?.uid;
-                      if (userId == null) {
-                        print("User is not logged in.");
+                      String? currentId = FirebaseAuth.instance.currentUser?.uid;
+                      if (currentId == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("User is not logged in.")),
+                        );
                         return;
                       }
                       try {
                         isLoading = true;
                         setState(() {});
                         await CountryServices().createCountry(CountryModel(
-                          docId: userId.toString(),
+                          docId: currentId.toString(),
                           countryName: countryName,
                           countryCode: countryCode,
                           createdAt: DateTime.now().millisecondsSinceEpoch,
@@ -181,6 +183,8 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
+                      minimumSize: Size(20, 20),
+                      maximumSize: Size(150, 60),
                       padding: EdgeInsets.symmetric(
                         horizontal: 30,
                         vertical: 12,

@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Models/userModel.dart';
 import 'package:news_app_backend_functionalities/Services/userServices.dart';
+import 'package:news_app_backend_functionalities/Views/login_screen.dart';
+import 'package:news_app_backend_functionalities/Views/selectCountry_screen.dart';
 import '../Services/authorization.dart';
 
 class signUp_screen extends StatefulWidget {
@@ -38,7 +41,7 @@ class _signUp_screenState extends State<signUp_screen> {
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -147,7 +150,9 @@ class _signUp_screenState extends State<signUp_screen> {
                         }
                         if (phoneNumberController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Phone Number can't be empty")),
+                            SnackBar(
+                              content: Text("Phone Number can't be empty"),
+                            ),
                           );
                           return;
                         }
@@ -174,13 +179,25 @@ class _signUp_screenState extends State<signUp_screen> {
                                         email: emailController.text,
                                         phoneNumber: phoneNumberController.text,
                                         address: addressController.text,
-                                        createdAt: DateTime.now().millisecondsSinceEpoch,
+                                        createdAt:
+                                            DateTime.now()
+                                                .millisecondsSinceEpoch,
                                         docId: val!.uid.toString(),
                                       ),
                                     )
-                                    .then((val){
+                                    .then((val) async {
                                       isLoading = false;
                                       setState(() {});
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder:
+                                                (context) =>
+                                                selectCountry_screen(),
+                                          ),
+                                        );
+
+
                                       showDialog(
                                         context: context,
                                         builder: (context) {
@@ -219,6 +236,35 @@ class _signUp_screenState extends State<signUp_screen> {
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),
+
+                SizedBox(height: 40),
+                
+                Text("If you already have account then..", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green)),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => login_screen()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 15,
+                    shadowColor: Colors.blue,
+                  ),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+
+
+
               ],
             ),
           ),
