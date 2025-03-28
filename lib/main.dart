@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app_backend_functionalities/Views/categories_screen.dart';
 import 'package:news_app_backend_functionalities/Views/login_screen.dart';
 import 'package:news_app_backend_functionalities/Views/selectArea_screen.dart';
 import 'package:news_app_backend_functionalities/Views/selectCity_screen.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: login_screen(),
+      home: signUp_screen(),
     );
   }
 }

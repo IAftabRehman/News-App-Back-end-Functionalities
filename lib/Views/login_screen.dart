@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Services/authorization.dart';
+import 'package:news_app_backend_functionalities/Views/categories_screen.dart';
 import 'package:news_app_backend_functionalities/Views/forgetPassword_screen.dart';
 import 'package:news_app_backend_functionalities/Views/selectCountry_screen.dart';
 import 'package:news_app_backend_functionalities/Views/signUp_screen.dart';
@@ -108,7 +109,7 @@ class _login_screenState extends State<login_screen> {
                               .then((val) {
                                 isLoading = false;
                                 setState(() {});
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => selectCountry_screen()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => categories_screen()));
                               });
                         } catch (e) {
                           isLoading = false;

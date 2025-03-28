@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Models/areaModel.dart';
 import 'package:news_app_backend_functionalities/Services/areaServices.dart';
+import 'package:news_app_backend_functionalities/Views/categories_screen.dart';
 import 'package:news_app_backend_functionalities/Views/login_screen.dart';
 
 class selectArea_screen extends StatefulWidget {
@@ -89,7 +90,7 @@ class _selectArea_screenState extends State<selectArea_screen> {
                   )).then((val){
                     isLoading = false;
                     setState(() {});
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => login_screen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => categories_screen()));
                   });
                 } catch (e) {
                   isLoading = false;
