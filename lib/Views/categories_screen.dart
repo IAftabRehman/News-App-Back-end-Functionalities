@@ -9,7 +9,6 @@ import 'package:news_app_backend_functionalities/Views/newsScreens/politicsScree
 import 'package:news_app_backend_functionalities/Views/newsScreens/sportsScreen.dart';
 import 'package:news_app_backend_functionalities/Views/newsScreens/technologyScreen.dart';
 import 'package:news_app_backend_functionalities/Views/newsScreens/worldnewsScreen.dart';
-import 'package:news_app_backend_functionalities/Views/news_screen.dart';
 
 class categories_screen extends StatefulWidget {
   const categories_screen({super.key});
