@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_backend_functionalities/Views/newsScreens/comments.dart';
 
 class politicsScreen extends StatefulWidget {
   const politicsScreen({super.key});
@@ -100,7 +101,10 @@ class _politicsScreenState extends State<politicsScreen> {
                     ),
                     const SizedBox(height: 10),
 
-                    SizedBox(height: 30,),
+                    SizedBox(height: 30),
+                    comments_screen(),
+
+                    SizedBox(height: 30),
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
