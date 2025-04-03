@@ -89,7 +89,7 @@ class _categories_screenState extends State<categories_screen> {
                         color: Colors.white,
                       ),
                       hint: Text(
-                        "Select an item",
+                        "Select an Category",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -135,42 +135,43 @@ class _categories_screenState extends State<categories_screen> {
                           return;
                         }
 
-                        String? currentId = FirebaseAuth.instance.currentUser?.uid;
+                        String? currentId =
+                            FirebaseAuth.instance.currentUser?.uid;
                         if (currentId == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("User is not Logged In")));
+                            SnackBar(content: Text("User is not Logged In")),
+                          );
                           return;
                         }
                         try {
                           isLoading = true;
                           setState(() {});
-                          await CategoriesServices()
-                              .createCategories(
-                                CategoriesModel(
-                                  categoriesName: selectedItem.toString(),
-                                  docId: currentId.toString(),
-                                  createdAt:
-                                      DateTime.now().millisecondsSinceEpoch,
-                                ),
-                              )
-                              .then((val) async {
-                                isLoading = false;
-                                setState(() {});
-                                if(selectedItem.toString() == "Technology"){
-                                  navigateToScreen(context, "Technology");
-                                }else if(selectedItem.toString() == "Education"){
-                                  navigateToScreen(context, "Education");
-                                }
-                                else if(selectedItem.toString() == "Politics"){
-                                  navigateToScreen(context, "Politics");
-                                }
-                                else if(selectedItem.toString() == "Sports"){
-                                  navigateToScreen(context, "Sports");
-                                }
-                                else if(selectedItem.toString() == "World News"){
-                                  navigateToScreen(context, "World News");
-                                }
-                              });
+                          if (selectedItem.toString() == "Politics") {
+                            tryCatch(context, selectedItem.toString(), currentId).then((val) {
+                              isLoading = false;
+                              setState(() {});
+                            });
+                          }else if(selectedItem.toString() == "Education"){
+                            tryCatch(context, selectedItem.toString(), currentId).then((val){
+                              isLoading = false;
+                              setState(() {});
+                            });
+                          }else if(selectedItem.toString() == "Technology"){
+                            tryCatch(context, selectedItem.toString(), currentId).then((val) {
+                              isLoading = false;
+                              setState(() {});
+                            });
+                          }else if(selectedItem.toString() == "Sports"){
+                            tryCatch(context, selectedItem.toString(), currentId).then((val) {
+                              isLoading = false;
+                              setState(() {});
+                            });
+                          }else if(selectedItem.toString() == "World News"){
+                            tryCatch(context, selectedItem.toString(), currentId).then((val) {
+                              isLoading = false;
+                              setState(() {});
+                            });
+                          }
                         } catch (e) {
                           isLoading = false;
                           setState(() {});
@@ -205,7 +206,7 @@ class _categories_screenState extends State<categories_screen> {
   }
 }
 
-
+// Calling my extra news files
 void navigateToScreen(BuildContext context, String screenName) {
   Map<String, Widget> routes = {
     "Technology": technology_Screen(),
@@ -214,7 +215,6 @@ void navigateToScreen(BuildContext context, String screenName) {
     "Sports": sportScreen(),
     "World News": worldnewsScreen(),
   };
-
   if (routes.containsKey(screenName)) {
     Navigator.push(
       context,
@@ -223,4 +223,20 @@ void navigateToScreen(BuildContext context, String screenName) {
   } else {
     Text("Categories would be Selected");
   }
+}
+
+
+Future<void> tryCatch(BuildContext context, String selectedItem, String currentId) async {
+  await CategoriesServices()
+      .createCategories(
+        CategoriesModel(
+          categoriesName: selectedItem.toString(),
+          docId: currentId.toString(),
+          extraId: selectedItem.toString(),
+          createdAt: DateTime.now().millisecondsSinceEpoch,
+        ),
+      )
+      .then((val) {
+        navigateToScreen(context, selectedItem);
+      });
 }

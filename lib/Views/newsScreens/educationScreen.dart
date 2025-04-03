@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'commentScreen.dart';
+
 class educationScreen extends StatefulWidget {
   const educationScreen({super.key});
 
@@ -42,7 +44,7 @@ class _educationScreenState extends State<educationScreen> {
               SizedBox(height: 20),
               Center(
                 child: Text(
-                  "Technology News",
+                  "Education News",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -109,6 +111,8 @@ class _educationScreenState extends State<educationScreen> {
                       style: TextStyle(fontSize: 14),
                     ),
 
+                    SizedBox(height: 30),
+                    comments_screen(),
                     SizedBox(height: 30,),
                     Center(
                       child: ElevatedButton(

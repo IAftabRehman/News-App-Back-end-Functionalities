@@ -188,16 +188,6 @@ class _signUp_screenState extends State<signUp_screen> {
                                     .then((val) async {
                                       isLoading = false;
                                       setState(() {});
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder:
-                                                (context) =>
-                                                selectCountry_screen(),
-                                          ),
-                                        );
-
-
                                       showDialog(
                                         context: context,
                                         builder: (context) {
@@ -208,7 +198,18 @@ class _signUp_screenState extends State<signUp_screen> {
                                             ),
                                           );
                                         },
-                                      );
+                                      ).then((val) async{
+                                        isLoading = false;
+                                        setState(() {});
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder:
+                                                (context) =>
+                                                selectCountry_screen(),
+                                          ),
+                                        );
+                                      });
                                     });
                               });
                         } catch (e) {
