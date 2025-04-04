@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'commentScreen.dart';
 
 class worldnewsScreen extends StatefulWidget {
   const worldnewsScreen({super.key});
@@ -109,6 +110,8 @@ class _worldnewsScreenState extends State<worldnewsScreen> {
                       style: TextStyle(fontSize: 14),
                     ),
 
+                    SizedBox(height: 30),
+                    comments_screen(categoriesName: 'World News'),
                     SizedBox(height: 30,),
                     Center(
                       child: ElevatedButton(

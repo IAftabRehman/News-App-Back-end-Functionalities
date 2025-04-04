@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'commentScreen.dart';
 
 class sportScreen extends StatefulWidget {
   const sportScreen({super.key});
@@ -109,6 +110,8 @@ class _sportScreenState extends State<sportScreen> {
                       style: TextStyle(fontSize: 14),
                     ),
 
+                    SizedBox(height: 30),
+                    comments_screen(categoriesName: 'Sports'),
                     SizedBox(height: 30,),
                     Center(
                       child: ElevatedButton(

@@ -8,11 +8,4 @@ class CategoriesServices {
         .doc(model.docId)
         .set(model.toJson());
   }
-  Future<String?> getExtraId(String docId) async {
-      DocumentSnapshot doc = await FirebaseFirestore.instance
-          .collection('categoriesCollection')
-          .doc(docId)
-          .get();
-      doc["extraId"];
-  }
 }

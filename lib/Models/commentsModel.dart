@@ -8,23 +8,27 @@ String commentsModelToJson(CommentsModel data) => json.encode(data.toJson());
 class CommentsModel {
   final String? comment;
   final String? docId;
-  final Timestamp? timestamp;
+  final String? extraId;
+  final int? createdAt;
 
   CommentsModel({
     required this.comment,
     required this.docId,
-    required this.timestamp,
+    required this.extraId,
+    required this.createdAt,
   });
 
   factory CommentsModel.fromJson(Map<String, dynamic> json) => CommentsModel(
     comment: json["comment"],
     docId: json["id"],
-    timestamp: json["timestamp"] ?? Timestamp.now(),
+    extraId: json["extraId"],
+    createdAt: json["createdAt"],
   );
 
   Map<String, dynamic> toJson() => {
     "comment": comment,
     "id": docId,
-    "timestamp": timestamp,
+    "extraId": extraId,
+    "createdAt": createdAt,
   };
 }

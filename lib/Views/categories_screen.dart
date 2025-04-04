@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app_backend_functionalities/Models/areaModel.dart';
 import 'package:news_app_backend_functionalities/Models/categoriesModel.dart';
-import 'package:news_app_backend_functionalities/Services/areaServices.dart';
 import 'package:news_app_backend_functionalities/Services/categoriesServices.dart';
 import 'package:news_app_backend_functionalities/Views/newsScreens/educationScreen.dart';
 import 'package:news_app_backend_functionalities/Views/newsScreens/politicsScreen.dart';

@@ -102,7 +102,7 @@ class _politicsScreenState extends State<politicsScreen> {
                     const SizedBox(height: 10),
 
                     SizedBox(height: 30),
-                    comments_screen(),
+                    comments_screen(categoriesName: 'Politics'),
                     SizedBox(height: 30),
                     Center(
                       child: ElevatedButton(

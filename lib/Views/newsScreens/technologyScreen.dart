@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'commentScreen.dart';
+
 class technology_Screen extends StatefulWidget {
   const technology_Screen({super.key});
 
@@ -109,6 +111,8 @@ class _technology_ScreenState extends State<technology_Screen> {
                       style: TextStyle(fontSize: 14),
                     ),
 
+                    SizedBox(height: 30),
+                    comments_screen(categoriesName: 'Technology'),
                     SizedBox(height: 30,),
                     Center(
                       child: ElevatedButton(

@@ -1,17 +1,12 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app_backend_functionalities/Models/categoriesModel.dart';
 import 'package:news_app_backend_functionalities/Models/commentsModel.dart';
-import 'package:news_app_backend_functionalities/Models/userModel.dart';
-import 'package:news_app_backend_functionalities/Services/categoriesServices.dart';
 import 'package:news_app_backend_functionalities/Services/commentsServices.dart';
 
 class comments_screen extends StatefulWidget {
-  const comments_screen({super.key});
-
+  final String? categoriesName;
+  comments_screen({super.key, required this.categoriesName});
   @override
   State<comments_screen> createState() => _comments_screenState();
 }
@@ -27,13 +22,13 @@ class _comments_screenState extends State<comments_screen> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      width: double.infinity, // ✅ Make sure it has a defined width
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(.6),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min, // ✅ Prevent taking infinite height
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -54,7 +49,7 @@ class _comments_screenState extends State<comments_screen> {
             ],
           ),
           SizedBox(height: 10),
-          comment ? CommentsWidget() : SizedBox(),
+          comment ? CommentsWidget(categoriesName: widget.categoriesName) : SizedBox(),
           SizedBox(height: 10),
           comment ? Row(
             children: [
@@ -75,7 +70,7 @@ class _comments_screenState extends State<comments_screen> {
                 icon: Icon(Icons.send, color: Colors.white),
                 onPressed: () async {
                   if (commentController.text.isNotEmpty) {
-                    String commentText = commentController.text; // ✅ Store the text first
+                    String commentText = commentController.text;
                     print("Comment: $commentText");
 
                     String currentUser = FirebaseAuth.instance.currentUser!.uid.toString();
@@ -84,7 +79,8 @@ class _comments_screenState extends State<comments_screen> {
                       setState(() {});
                       await CommentsServices().addComment(CommentsModel(
                         comment: commentText,
-                        timestamp: Timestamp.now(),
+                        createdAt: DateTime.now().millisecondsSinceEpoch,
+                        extraId: widget.categoriesName,
                         docId: currentUser.toString(),
                       )).then((val) {
                         isLoading = false;
@@ -109,19 +105,20 @@ class _comments_screenState extends State<comments_screen> {
 }
 
 
+class CommentsWidget extends StatefulWidget {
+  final String? categoriesName;
+  CommentsWidget({super.key, required this.categoriesName});
 
-class CommentsWidget extends StatelessWidget {
-  const CommentsWidget({super.key});
+  @override
+  State<CommentsWidget> createState() => _CommentsWidgetState();
+}
 
-  Stream<QuerySnapshot> getComments() =>
-      FirebaseFirestore.instance.collection('commentsCollection')
-          .orderBy('timestamp', descending: true)
-          .snapshots();
-
+class _CommentsWidgetState extends State<CommentsWidget> {
+  String? userName;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: getComments(),
+      stream: CommentsServices().getComments(widget.categoriesName.toString()),
       builder: (context, snapshot) {
         if (snapshot.hasError) return Center(child: Text("Error loading comments"));
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
@@ -129,18 +126,17 @@ class CommentsWidget extends StatelessWidget {
         }
 
         return ListView(
-          shrinkWrap: true, // ✅ Fix infinite size error
-          physics: NeverScrollableScrollPhysics(), // ✅ Prevent nested scroll issue
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           children: snapshot.data!.docs.map((doc) {
             final comment = (doc.data() as Map<String, dynamic>)['comment'] ?? 'No comment';
-            return Row(
-              children: [
-                Text(": ", style: TextStyle(fontSize: 16, color: Colors.white)),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Text("$comment", style: TextStyle(fontSize: 16, color: Colors.white)),
-                ),
-              ],
+            return Padding(
+              padding: EdgeInsets.all(8),
+              child: Row(
+                children: [
+                  Text("$comment", style: TextStyle(fontSize: 16, color: Colors.white)),
+                ],
+              ),
             );
           }).toList(),
         );

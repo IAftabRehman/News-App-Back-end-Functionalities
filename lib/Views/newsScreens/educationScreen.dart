@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'commentScreen.dart';
@@ -112,7 +113,7 @@ class _educationScreenState extends State<educationScreen> {
                     ),
 
                     SizedBox(height: 30),
-                    comments_screen(),
+                    comments_screen(categoriesName: 'Education'),
                     SizedBox(height: 30,),
                     Center(
                       child: ElevatedButton(
