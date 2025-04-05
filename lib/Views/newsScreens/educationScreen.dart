@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:news_app_backend_functionalities/Views/update_screen.dart';
+import '../../Models/userModel.dart';
+import '../../Services/userServices.dart';
 import 'commentScreen.dart';
 
 class educationScreen extends StatefulWidget {
@@ -17,6 +19,13 @@ class _educationScreenState extends State<educationScreen> {
     return Scaffold(
       backgroundColor: Colors.teal,
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: () async {
+            // String uid = FirebaseAuth.instance.currentUser!.uid;
+            // UserModel userModel = await UserServices().getUserByID(uid);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileView()));
+          }, icon: Icon(Icons.person, size: 30, color: Colors.white))
+        ],
         title: Text(
           "Education News",
           style: TextStyle(

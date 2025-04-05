@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Models/userModel.dart';
 import 'package:news_app_backend_functionalities/Services/userServices.dart';
@@ -148,6 +147,11 @@ class _signUp_screenState extends State<signUp_screen> {
                             SnackBar(content: Text("Password can't be empty")),
                           );
                         }
+                        if (passwordController.text.length <= 6) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Password Characters must be 6 or more")),
+                          );
+                        }
                         if (phoneNumberController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -177,6 +181,7 @@ class _signUp_screenState extends State<signUp_screen> {
                                       UserModel(
                                         name: nameController.text,
                                         email: emailController.text,
+                                        password: passwordController.text,
                                         phoneNumber: phoneNumberController.text,
                                         address: addressController.text,
                                         createdAt:
@@ -233,39 +238,30 @@ class _signUp_screenState extends State<signUp_screen> {
                         shadowColor: Colors.blue,
                       ),
                       child: Text(
-                        "SignUp",
+                        "Sign Up",
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),
 
                 SizedBox(height: 40),
-                
-                Text("If you already have account then..", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green)),
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => login_screen()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 12,
+
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have account",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 15,
-                    shadowColor: Colors.blue,
-                  ),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                ),
-
-
-
+                    TextButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => login_screen()));
+                    }, child: Text("Login", style: TextStyle(fontSize: 20, color: Colors.blue, fontWeight: FontWeight.bold)))
+                  ],
+                )
               ],
             ),
           ),

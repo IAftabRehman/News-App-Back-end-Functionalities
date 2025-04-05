@@ -24,14 +24,17 @@ class UserServices {
     });
   }
 
-  ///Update User Profile
+
   Future updateTask(UserModel model) async {
     return await FirebaseFirestore.instance
         .collection('userCollection')
         .doc(model.docId)
         .update({
       "name": model.name,
+      "email": model.email,
       "phone": model.phoneNumber,
+      "password": model.password,
+      "address": model.address,
     });
   }
 }

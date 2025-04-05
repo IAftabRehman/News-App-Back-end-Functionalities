@@ -32,7 +32,7 @@ class _categories_screenState extends State<categories_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "News App",
+          "Select Category",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -41,8 +41,6 @@ class _categories_screenState extends State<categories_screen> {
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
-        elevation: 10,
-        shadowColor: Colors.blue,
       ),
       body: Container(
         decoration: BoxDecoration(

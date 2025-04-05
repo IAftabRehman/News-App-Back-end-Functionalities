@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Models/cityModel.dart';
 import 'package:news_app_backend_functionalities/Services/cityServices.dart';
-import 'package:news_app_backend_functionalities/Views/login_screen.dart';
 import 'package:news_app_backend_functionalities/Views/selectArea_screen.dart';
 
 class selectCity_screen extends StatefulWidget {
@@ -21,7 +20,7 @@ class _selectCity_screenState extends State<selectCity_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "News App",
+          "Select City",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -62,7 +61,7 @@ class _selectCity_screenState extends State<selectCity_screen> {
                     backgroundColor: Colors.blue,
                     shadowColor: Colors.blue,
                     elevation: 10,
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -76,12 +75,6 @@ class _selectCity_screenState extends State<selectCity_screen> {
                     }
 
                     String? currentId = FirebaseAuth.instance.currentUser?.uid;
-                    if (currentId == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("User is not logged in.")),
-                      );
-                      return;
-                    }
 
                     try {
                       isLoading = true;

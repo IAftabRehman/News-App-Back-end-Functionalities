@@ -41,7 +41,7 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "News App",
+          "Select Country",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -69,7 +69,7 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                   onPressed: _openCountryPicker,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -79,7 +79,7 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                   child: Center(
                     child: Text(
                       "Select Country",
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),
                 ),
@@ -91,19 +91,20 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                 height: 120,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(.6),
+                  color: Colors.blueGrey,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _selectedCountry != null
                           ? Text(
                             "Country Name: ${_selectedCountry!.name} ${_selectedCountry!.flagEmoji}",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -111,7 +112,7 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                           : Text(
                             "Country Name: ??",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -123,7 +124,7 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                           ? Text(
                             "Country Code: ${_selectedCountry!.phoneCode}",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -131,7 +132,7 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                           : Text(
                             "Country Code: ??",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -186,8 +187,8 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                       minimumSize: Size(20, 20),
                       maximumSize: Size(150, 60),
                       padding: EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 12,
+                        horizontal: 25,
+                        vertical: 10,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -198,7 +199,7 @@ class _selectCountry_screenState extends State<selectCountry_screen> {
                     child: Center(
                       child: Text(
                         "Next",
-                        style: TextStyle(fontSize: 25, color: Colors.white),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),
                   ),

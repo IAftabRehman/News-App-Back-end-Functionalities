@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Services/authorization.dart';
 import 'package:news_app_backend_functionalities/Views/categories_screen.dart';
-import 'package:news_app_backend_functionalities/Views/forgetPassword_screen.dart';
-import 'package:news_app_backend_functionalities/Views/selectCountry_screen.dart';
 import 'package:news_app_backend_functionalities/Views/signUp_screen.dart';
 
 class login_screen extends StatefulWidget {
@@ -46,9 +44,9 @@ class _login_screenState extends State<login_screen> {
             SizedBox(height: 10),
             TextField(
               controller: emailController,
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: 'Enter Email',
                 border: OutlineInputBorder(),
               ),
               style: TextStyle(
@@ -63,7 +61,7 @@ class _login_screenState extends State<login_screen> {
               controller: passwordController,
               keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: 'Enter Password',
                 border: OutlineInputBorder(),
               ),
               style: TextStyle(
@@ -74,7 +72,7 @@ class _login_screenState extends State<login_screen> {
               cursorColor: Colors.red,
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 30),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -109,7 +107,14 @@ class _login_screenState extends State<login_screen> {
                               .then((val) {
                                 isLoading = false;
                                 setState(() {});
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => categories_screen()));
+                                if (true) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => categories_screen(),
+                                    ),
+                                  );
+                                }
                               });
                         } catch (e) {
                           isLoading = false;
@@ -192,33 +197,34 @@ class _login_screenState extends State<login_screen> {
             ),
 
             SizedBox(height: 30),
-            Text(
-              "adklsjflasd",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 20),
-
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Don't have account",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                elevation: 10,
-                shadowColor: Colors.blue
-              ),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => signUp_screen()));
-              },
-              child: Text(
-                "Sign Up",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => signUp_screen()),
+                    );
+                  },
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

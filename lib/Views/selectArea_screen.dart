@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Models/areaModel.dart';
 import 'package:news_app_backend_functionalities/Services/areaServices.dart';
 import 'package:news_app_backend_functionalities/Views/categories_screen.dart';
-import 'package:news_app_backend_functionalities/Views/login_screen.dart';
 
 class selectArea_screen extends StatefulWidget {
   const selectArea_screen({super.key});
@@ -21,7 +20,7 @@ class _selectArea_screenState extends State<selectArea_screen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "News App",
+          "Select Area",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -58,7 +57,7 @@ class _selectArea_screenState extends State<selectArea_screen> {
                 : ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
