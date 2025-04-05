@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Views/update_screen.dart';
-import '../../Models/userModel.dart';
-import '../../Services/userServices.dart';
 import 'commentScreen.dart';
 
 class educationScreen extends StatefulWidget {
