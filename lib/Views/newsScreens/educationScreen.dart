@@ -80,7 +80,7 @@ class _educationScreenState extends State<educationScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Starlinks Entry into Pakistan",
+                      "Starlings Entry into Pakistan",
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.red),
                     ),
                     const Text(
