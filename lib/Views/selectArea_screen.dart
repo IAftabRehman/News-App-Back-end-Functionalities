@@ -89,7 +89,10 @@ class _selectArea_screenState extends State<selectArea_screen> {
                   )).then((val){
                     isLoading = false;
                     setState(() {});
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => categories_screen()));
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => categories_screen()),
+                          (route) => false,
+                    );
                   });
                 } catch (e) {
                   isLoading = false;

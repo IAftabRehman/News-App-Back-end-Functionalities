@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_backend_functionalities/Views/newsScreens/educationScreen.dart';
+import 'package:news_app_backend_functionalities/Views/signUp_screen.dart';
 
 
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: educationScreen(),
+      home: signUp_screen(),
     );
   }
 }

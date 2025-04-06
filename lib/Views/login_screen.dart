@@ -108,11 +108,9 @@ class _login_screenState extends State<login_screen> {
                                 isLoading = false;
                                 setState(() {});
                                 if (true) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => categories_screen(),
-                                    ),
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(builder: (context) => categories_screen()),
+                                        (route) => false,
                                   );
                                 }
                               });
