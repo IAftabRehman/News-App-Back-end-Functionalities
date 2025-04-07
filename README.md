@@ -59,3 +59,20 @@ Flutter Developer | Firebase Enthusiast
 > Feel free to star ⭐ this repository if you found it helpful!  
 > Contributions are always welcome – fork the repo and submit a pull request. 😊
 
+
+---
+
+### 📊 GitHub Stats
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=IAftabRehman&show_icons=true&theme=radical" height="180"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=IAftabRehman&layout=compact&theme=radical" height="180"/>
+</div>
+
+---
+
+<p align="center">
+  ⭐️ From <a href="https://github.com/IAftabRehman">IAftabRehman</a>
+</p>
+
+

@@ -113,6 +113,16 @@ class _login_screenState extends State<login_screen> {
                                         (route) => false,
                                   );
                                 }
+                                else {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text("Message"),
+                                          content: Text("Please verify your email"),
+                                        );
+                                      });
+                                }
                               });
                         } catch (e) {
                           isLoading = false;

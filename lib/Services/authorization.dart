@@ -23,4 +23,3 @@ class authorizationServices{
     return FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   }
 }
-
