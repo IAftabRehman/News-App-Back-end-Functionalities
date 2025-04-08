@@ -43,17 +43,6 @@ Thanks to Firebase’s real-time database capabilities, updates like new comment
 - Improved comment moderation
 - Multi-language support
 
-## 🧑‍💻 Developed By
-
-**Aftab Ur Rehman**  
-Flutter Developer | Firebase Enthusiast  
-🇵🇰 Pakistan
-
-## 🌐 Connect with Me
-
-- 🔗 [LinkedIn](https://www.linkedin.com/in/aftab-rehman)
-- 📧 Email: iamaftabrehman@gmail.com`
-
 ---
 
 ### 🏁 Getting Started
@@ -67,7 +56,7 @@ To get started with this project, follow these steps:
 
 2. Navigate to the project directory:
     ```bash
-    cd Task-Management-System
+    cd News-App-Back-end-Functionalities
     ```
 
 3. Install the dependencies:
@@ -81,6 +70,17 @@ To get started with this project, follow these steps:
     ```
 
 ---
+
+## 🧑‍💻 Developed By
+
+**Aftab Ur Rehman**  
+Flutter Developer | Firebase Enthusiast  
+🇵🇰 Pakistan
+
+## 🌐 Connect with Me
+
+- 🔗 [LinkedIn](https://www.linkedin.com/in/aftab-rehman)
+- 📧 Email: iamaftabrehman@gmail.com`
 
 ---
 
