@@ -56,9 +56,31 @@ Flutter Developer | Firebase Enthusiast
 
 ---
 
-> Feel free to star ⭐ this repository if you found it helpful!  
-> Contributions are always welcome – fork the repo and submit a pull request. 😊
+### 🏁 Getting Started
 
+To get started with this project, follow these steps:
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/IAftabRehman/News-App-Back-end-Functionalities
+    ```
+
+2. Navigate to the project directory:
+    ```bash
+    cd Task-Management-System
+    ```
+
+3. Install the dependencies:
+    ```bash
+    flutter pub get
+    ```
+
+4. Run the app:
+    ```bash
+    flutter run
+    ```
+
+---
 
 ---
 
