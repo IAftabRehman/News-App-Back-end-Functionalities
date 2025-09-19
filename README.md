@@ -7,7 +7,7 @@ This repository is the backend-focused implementation of a **News App** built us
 - 🗂️ News Categorization
 - 💬 Comment System
 
-## 🚀 Features
+## 🚀 Features 
 
 ✅ **Authentication**  
 Supports secure login and registration using Firebase Authentication with email & password.
